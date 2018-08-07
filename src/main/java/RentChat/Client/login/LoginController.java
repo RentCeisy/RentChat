@@ -59,6 +59,16 @@ public class LoginController implements Initializable {
             labelAuth.setText("Пользователь не найден");
         } else {
             labelAuth.setText("Добро пожаловать, " + user.getLogin());
+            Parent parent = null;
+            try {
+                parent = FXMLLoader.load(getClass().getResource("/view/ChatView.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Scene scene = new Scene(parent);
+            Stage stage = MainApp.getStage();
+            stage.setScene(scene);
+            stage.show();
         }
     }
     @Override

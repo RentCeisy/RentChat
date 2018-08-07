@@ -9,7 +9,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Selection;
-import java.sql.ResultSet;
 
 public class DbHelper {
 
@@ -40,5 +39,39 @@ public class DbHelper {
         }
         session.close();
         return user;
+    }
+
+    public boolean checkLogin(String login) {
+        Session session = sessionFactory.openSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery criteriaQuery = criteriaBuilder.createQuery(User.class);
+        Root<User> root = criteriaQuery.from(User.class);
+        criteriaQuery.select(root).where(criteriaBuilder.equal(root.<String>get("login"), login));
+        Query query = session.createQuery(criteriaQuery);
+        User user = null;
+        try {
+            user = (User)query.getSingleResult();
+
+        } catch (NoResultException e) {
+        } finally {
+            session.close();
+        }
+
+        if (user == null)  {
+            System.out.println("юзер отсутствует");
+            return true;
+        } else {
+            System.out.println("есть юзер");
+            return false;
+        }
+    }
+
+    public void registarionUser(String login, String password) {
+        User user = new User(login, password);
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.save(user);
+        session.getTransaction().commit();
+        session.close();
     }
 }

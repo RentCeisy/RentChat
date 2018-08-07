@@ -9,9 +9,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="372.0" prefWidth="372.0" style="-fx-background-color: #f1f1f1f1;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RentChat.Client.auth.RegController">
     <children>
-        <TextField layoutX="112.0" layoutY="187.0" />
-        <PasswordField layoutX="112.0" layoutY="230.0" />
-        <Button layoutX="112.0" layoutY="311.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Зарегистрироваться" />
+        <TextField fx:id="loginTextField" layoutX="112.0" layoutY="187.0" />
+        <PasswordField fx:id="passwordField" layoutX="112.0" layoutY="230.0" />
+        <Button layoutX="112.0" layoutY="311.0" mnemonicParsing="false" onAction="#registerButtonAction" prefHeight="25.0" prefWidth="149.0" text="Зарегистрироваться" />
         <Label layoutX="34.0" layoutY="191.0" text="Логин" />
         <Label layoutX="34.0" layoutY="234.0" text="Пароль" />
         <Label layoutX="63.0" layoutY="55.0" prefHeight="103.0" prefWidth="245.0" text="RentChatFX" textAlignment="CENTER">
@@ -19,8 +19,9 @@
                 <Font name="Bodoni MT" size="43.0" />
             </font>
         </Label>
-      <PasswordField layoutX="112.0" layoutY="269.0" />
+      <PasswordField fx:id="rePasswordField" layoutX="112.0" layoutY="269.0" />
       <Label layoutX="34.0" layoutY="273.0" text="Повторить" />
       <Button layoutX="160.0" layoutY="22.0" mnemonicParsing="false" onAction="#loginButtonAction" text="Назад" />
+      <Label fx:id="labelReg" layoutX="114.0" layoutY="150.0" prefHeight="17.0" prefWidth="149.0" textAlignment="CENTER" />
     </children>
 </AnchorPane>
